@@ -20,6 +20,10 @@ function newSquare(sqSize) {
       sq.style.backgroundColor = paintColor();
     }
   });
+  sq.addEventListener(
+    "mousedown",
+    () => (sq.style.backgroundColor = paintColor()),
+  );
   return sq;
 }
 
@@ -34,6 +38,12 @@ function newGrid(sideLen) {
     sketch.appendChild(sq);
   }
 }
+function clearGrid() {
+  let squares = document.querySelectorAll(".square");
+  squares.forEach((sq) => {
+    sq.style.backgroundColor = "#ffffff";
+  });
+}
 function deleteGrid() {
   let squares = document.querySelectorAll(".square");
   squares.forEach((sq) => {
@@ -42,6 +52,7 @@ function deleteGrid() {
 }
 
 let colorchooser = document.querySelector(".colorchooser");
+colorchooser.value = "#000000";
 colorchooser.addEventListener("input", (e) => {
   color = colorchooser.value;
 });
@@ -73,5 +84,7 @@ newGridButton.addEventListener("click", () => {
   deleteGrid();
   newGrid(size);
 });
+let clearGridButton = document.querySelector(".clear");
+clearGridButton.addEventListener("click", () => clearGrid());
 
 newGrid(16);
